@@ -1,0 +1,54 @@
+# Imports
+
+from guizero import App, Box, Text, PushButton, Picture 
+from random import choice
+from time import sleep
+import winsound
+
+# Variables
+
+colors = ("yellow", "green", "pink", "white", "orange")
+
+
+# Functions
+
+def prank_me_play_music():
+    winsound.PlaySound("Rick.wav", winsound.SND_ASYNC)
+    app.bg = choice(colors)
+
+    #shows a picture of rick
+    sleep(2)
+    rick_pic = Picture(app, image="rick_dance.gif")
+
+    title_text = Text(answer_grid, "   YOU GOT RICK ROLLED"   , grid =[0, 0])
+    title_text.text_size = 18
+    score_text = Text(answer_grid, "  Your current score = ricked  ", grid =[0, 5])
+    
+    ricked_again()
+
+def ricked_again():
+    prank_again = app.yesno("Rick Rolled", "Want to be Rick Rolled again?")
+    if prank_again == True:
+        app.info("Rick says", "Never gonna give you up!")
+        prank_me_play_music()
+    else:
+        app.error("Rick says", "I let you down...")
+        app.destroy()
+# App
+
+app = App("General Knowledge Quiz", width=330, height=338)
+your_name = app.question("The Quiz", "What's your name?")
+answer_grid = Box(app, layout = "grid")
+title_text = Text(answer_grid, "Q1: A baby sloth is called a?", grid =[0, 0])
+score_text = Text(answer_grid, your_name + "'s current score = 0", grid =[0, 5])
+title_text.text_size = 14
+title_text.font = "Comic Sans"
+
+answer1 = PushButton(answer_grid, command=prank_me_play_music, text='Pup', grid =[0, 2])
+answer2= PushButton(answer_grid, command=prank_me_play_music, text='Cub', grid =[0, 4])
+
+app.display()
+
+
+
+

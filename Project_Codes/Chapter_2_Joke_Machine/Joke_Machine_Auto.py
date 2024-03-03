@@ -16,7 +16,7 @@ def select_joke():
    
 # App
 
-app = App("Joke Machine", width =700, height=300)
+app = App("Joke Machine", width =700, height=450)
 app.bg = "White"
 title_text = Text(app, "The Joke Machine")
 title_text.text_size = 28
